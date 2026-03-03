@@ -25,11 +25,10 @@ A simple, lightweight Google Chrome extension that allows you to easily copy mat
 ## Usage
 
 1. Go to [Google Gemini](https://gemini.google.com/) and ask it to generate a mathematical formula.
-2. Hover your mouse over the formula block.
-3. A small **📋 Copy Formula** button will appear in the top right corner of the formula.
-4. Click the button (it will momentarily change to "✅ Copied!").
-5. Open **Microsoft Word**.
-6. Paste (`Ctrl + V` or `Cmd + V`). The formula will instantly appear as a fully editable Native Word Equation.
+2. Hover your mouse over the formula block or inline formula. It will be highlighted with a border, and a **"Click to copy"** button will appear.
+3. Simply **click anywhere on the formula** (or on the button itself) to copy it. The button text will momentarily change to **"Copied!"**.
+4. Open **Microsoft Word**.
+5. Paste (`Ctrl + V` or `Cmd + V`). The formula will instantly appear as a fully editable Native Word Equation.
 
 *Note: Google Docs explicitly strips MathML data from the clipboard, so pasting there will result in the raw LaTeX code being inserted instead of a rendered equation.*
 
