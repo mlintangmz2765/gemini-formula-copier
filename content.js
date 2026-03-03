@@ -23,16 +23,11 @@ function injectCopyButtons() {
 
         const btn = document.createElement('button');
         btn.className = 'gemini-math-copy-btn';
-        btn.innerHTML = '📋 Copy Formula';
-        btn.title = 'Copy formula to clipboard';
-
-        if (mathEl.classList.contains('math-inline')) {
-            btn.style.top = '-20px';
-        }
+        btn.textContent = 'Click to copy';
 
         mathEl.appendChild(btn);
 
-        btn.addEventListener('click', (e) => {
+        mathEl.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             copyMath(mathEl, btn);
@@ -67,22 +62,37 @@ function copyMath(mathContainer, btn) {
             })];
 
             navigator.clipboard.write(data).then(() => {
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '✅ Copied!';
-                setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Click to copy';
+                    btn.classList.remove('copied');
+                }, 2000);
             }).catch(err => {
-                console.error('Extension failed to write to clipboard: ', err);
-                btn.innerHTML = '❌ Copy Failed';
-                setTimeout(() => { btn.innerHTML = '📋 Copy Formula'; }, 2000);
+                console.error(err);
+                btn.textContent = 'Copy Failed';
+                btn.classList.add('error');
+                setTimeout(() => {
+                    btn.textContent = 'Click to copy';
+                    btn.classList.remove('error');
+                }, 2000);
             });
         } catch (e) {
-            console.error('KaTeX rendering error: ', e);
-            btn.innerHTML = '❌ Render Error';
-            setTimeout(() => { btn.innerHTML = '📋 Copy Formula'; }, 2000);
+            console.error(e);
+            btn.textContent = 'Render Error';
+            btn.classList.add('error');
+            setTimeout(() => {
+                btn.textContent = 'Click to copy';
+                btn.classList.remove('error');
+            }, 2000);
         }
     } else {
-        btn.innerHTML = '⚠️ Source not found';
-        setTimeout(() => { btn.innerHTML = '📋 Copy Formula'; }, 2000);
+        btn.textContent = 'Source not found';
+        btn.classList.add('error');
+        setTimeout(() => {
+            btn.textContent = 'Click to copy';
+            btn.classList.remove('error');
+        }, 2000);
     }
 }
 
