@@ -1,0 +1,31 @@
+.gemini-math-copy-btn {
+    position: absolute;
+    top: -15px;
+    right: 0px;
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-family: Arial, sans-serif;
+    color: #3c4043;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+    transition: background-color 0.2s;
+}
+
+.gemini-math-copy-btn:hover {
+    background-color: #e8eaed;
+}
+
+.math-block:hover .gemini-math-copy-btn,
+.math-inline:hover .gemini-math-copy-btn {
+    display: inline-block;
+}
+
+.math-block .gemini-math-copy-btn {
+    top: 5px;
+    right: 5px;
+}

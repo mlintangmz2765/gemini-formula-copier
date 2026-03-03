@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "Gemini Formula Copier",
+    "version": "1.0",
+    "description": "Easily copy mathematical formulas from Google Gemini directly into Microsoft Word without losing their formatting.",
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
+    "permissions": [
+        "clipboardWrite"
+    ],
+    "host_permissions": [
+        "https://gemini.google.com/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://gemini.google.com/*"
+            ],
+            "js": [
+                "katex.min.js",
+                "content.js"
+            ],
+            "css": [
+                "style.css"
+            ]
+        }
+    ]
+}
