@@ -146,31 +146,42 @@ function inject() {
             e.preventDefault();
             const source = settings.extract(mathEl);
             if (!source) { showFeedback(btn, 'No source found', 'error'); return; }
-            chrome.storage.sync.get(['copyFormat'], (result) => {
-                const format = result.copyFormat || 'mathml';
-                if (format === 'mathml') copyMathML(mathEl, source, btn);
+
+            const isBlock = mathEl.classList.contains('math-block') || mathEl.classList.contains('katex-display');
+
+            chrome.storage.sync.get({ copyFormat: 'mathml', latexDelimiter: 'none' }, (result) => {
+                const format = result.copyFormat;
+                const delimiter = result.latexDelimiter;
+
+                if (format === 'mathml') copyMathML(source, isBlock, btn);
                 else if (format === 'plain') copyUnicode(mathEl, source, btn);
-                else if (format === 'latex') copyRaw(source, btn);
-                else if (format === 'image') copyImage(mathEl, source, btn);
+                else if (format === 'latex') copyRaw(source, isBlock, delimiter, btn);
+                else if (format === 'image') copyImage(source, isBlock, btn);
             });
         });
     });
 }
 
-function copyMathML(container, source, btn) {
+function copyMathML(source, isBlock, btn) {
     try {
-        const isBlock = container.classList.contains('math-block') || container.classList.contains('katex-display');
         const rendered = katex.renderToString(source, { displayMode: isBlock, output: 'mathml' }).trim();
         const html = `<html xmlns:m="http://www.w3.org/1998/Math/MathML"><body><!--StartFragment-->${rendered}<!--EndFragment--></body></html>`;
         writeToClipboard({ 'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([rendered], { type: 'text/plain' }) }, btn);
     } catch (e) { showFeedback(btn, 'Error', 'error'); }
 }
 
-function copyRaw(source, btn) { writePlain(source, btn); }
+function copyRaw(source, isBlock, delimiter, btn) {
+    let output = source;
+    if (delimiter === 'dollar') {
+        output = isBlock ? `$$\n${source}\n$$` : `$${source}$`;
+    } else if (delimiter === 'bracket') {
+        output = isBlock ? `\\[\n${source}\n\\]` : `\\(${source}\\)`;
+    }
+    writePlain(output, btn);
+}
 
-async function copyImage(container, source, btn) {
+async function copyImage(source, isBlock, btn) {
     try {
-        const isBlock = container.classList.contains('math-block') || container.classList.contains('katex-display');
         const temp = document.createElement('div');
         temp.style.cssText = 'position:fixed;left:0;top:0;z-index:-1;padding:20px;color:black !important;fill:black !important;';
         document.body.appendChild(temp);
