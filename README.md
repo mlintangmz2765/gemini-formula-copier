@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/mlintangmz)
 
-MathBridge is a lightweight browser extension designed to resolve the compatibility gap between web-based AI platforms and document editors. It enables seamless extraction and conversion of TeX-based formulas into editable high-fidelity formats.
+MathBridge is a lightweight browser extension designed to bridge the gap between AI platforms and your workflow. It enables seamless extraction and conversion of TeX-based formulas into Microsoft Word (MathML), LaTeX, high-fidelity Plain Text (Unicode), or transparent PNG images.
 
 ## Key Features
 
