@@ -2,6 +2,7 @@
 
 [![Version](https://img.shields.io/badge/version-1.0.0--stable-0b9d58.svg)](https://github.com/mlintangmz2765/MathBridge)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/mlintangmz)
 
 MathBridge is a lightweight browser extension designed to resolve the compatibility gap between web-based AI platforms and document editors. It enables seamless extraction and conversion of TeX-based formulas into editable high-fidelity formats.
 
@@ -36,6 +37,17 @@ MathBridge operates by intercepting the DOM after KaTeX/MathJax rendering. It re
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
+
+## Community & Support
+
+- **Privacy Policy**: Read our [Privacy Policy](PRIVACY.md) to understand how we protect your data (we work 100% locally).
+- **Contributing**: We welcome pull requests! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct.
+
+If you find this extension helpful, consider supporting the development:
+<div style="display: flex; gap: 10px;">
+  <a href="https://trakteer.id/mlintangmz" target="_blank"><img id="wse-buttons-preview" src="https://cdn.trakteer.id/images/embed/trbtn-red-1.png" height="40" style="border:0px;height:40px;" alt="Dukung Saya di Trakteer"></a>
+  <a href="https://www.buymeacoffee.com/mlintangmz" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 144px !important;" ></a>
+</div>
 
 ---
 *Developed by mlintangmz | 2026*
