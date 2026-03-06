@@ -100,8 +100,7 @@ const MATH_SELECTORS = [
 const CONFIG = {
     'gemini.google.com': { selector: MATH_SELECTORS, extract: extractKaTeX },
     'chat.deepseek.com': { selector: MATH_SELECTORS, extract: extractKaTeX },
-    'www.perplexity.ai': { selector: MATH_SELECTORS, extract: extractKaTeX },
-    'perplexity.ai': { selector: MATH_SELECTORS, extract: extractKaTeX },
+    'perplexity.ai': { selector: MATH_SELECTORS + ', .mjx-container, [data-testid="message-content"] math', extract: extractKaTeX },
     'chatgpt.com': { selector: MATH_SELECTORS, extract: extractKaTeX },
     'claude.ai': { selector: MATH_SELECTORS, extract: extractKaTeX }
 };
@@ -122,6 +121,10 @@ const observer = new MutationObserver((mutations) => {
     }
     if (changed) inject();
 });
+
+const isExtensionValid = () => {
+    return typeof chrome !== 'undefined' && chrome.runtime && !!chrome.runtime.id;
+};
 
 observer.observe(document.body, { childList: true, subtree: true });
 
@@ -149,7 +152,19 @@ function inject() {
 
             const isBlock = mathEl.classList.contains('math-block') || mathEl.classList.contains('katex-display');
 
-            chrome.storage.sync.get({ copyFormat: 'mathml', latexDelimiter: 'none' }, (result) => {
+            const defaultOpts = { copyFormat: 'mathml', latexDelimiter: 'none' };
+
+            if (!isExtensionValid() || !chrome.storage || !chrome.storage.sync) {
+                // Fallback to defaults if extension context is lost or storage unavailable
+                copyMathML(source, isBlock, btn);
+                return;
+            }
+
+            chrome.storage.sync.get(defaultOpts, (result) => {
+                if (chrome.runtime.lastError) {
+                    copyMathML(source, isBlock, btn);
+                    return;
+                }
                 const format = result.copyFormat;
                 const delimiter = result.latexDelimiter;
 
