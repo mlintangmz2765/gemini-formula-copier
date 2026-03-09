@@ -2,6 +2,7 @@
 
 [![Version](https://img.shields.io/badge/version-1.0.0--stable-0b9d58.svg)](https://github.com/mlintangmz2765/MathBridge)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-MathBridge-4285F4?logo=google-chrome&logoColor=white)](https://chromewebstore.google.com/detail/ogpefakmommhaccbaomlbjhialankkkk)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/mlintangmz)
 
 MathBridge is a lightweight browser extension designed to bridge the gap between AI platforms and your workflow. It enables seamless extraction and conversion of TeX-based formulas into Microsoft Word (MathML), LaTeX, high-fidelity Plain Text (Unicode), or transparent PNG images.
